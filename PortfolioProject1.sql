@@ -177,3 +177,11 @@ join PortfolioProject..CovidVaccinations as vac
 	and dea.date = vac.date
 where dea.continent is not null
 --order by 2,3
+
+
+create view DeathCountPerContinent as
+Select location, MAX(cast(Total_deaths as int)) as TotalDeathCount
+From PortfolioProject..CovidDeaths
+Where continent is null 
+Group by location
+--order by TotalDeathCount desc	
